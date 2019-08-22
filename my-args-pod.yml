@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-args-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myappcontainer
+    image: busybox
+    command: ['echo']
+    args: ['This is a sample argument for the command given above to run within the container']
+  restartPolicy: Never
