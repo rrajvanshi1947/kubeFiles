@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: candy-service-pod
+spec:
+  serviceAccountName: candy-svc
+  securityContext:
+    fsGroup: 2000
+  containers:
+  - name: myapp-container
+    image: "linuxacademycontent/candy-service:1"
+    env:
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: db-password
+          key: password
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: myvolume
+      mountPath: /etc/candy-service/candy.cfg
+  volumes:
+  - name: myvolume
+    configMap:
+      name: candy-service-config
