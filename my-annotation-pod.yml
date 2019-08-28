@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-annotation-pod
+  annotations:
+    rub: Roopam
+    ak: Rajvanshi
+spec:
+  containers:
+  - name: nginx
+    image: nginx
