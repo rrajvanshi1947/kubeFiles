@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      type: servicepod
+  template:
+    metadata:
+      labels:
+        type: servicepod
+    spec:
+      containers:
+      - name: service-container
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
